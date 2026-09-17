@@ -1,0 +1,28 @@
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        if (head == null || head.next == null) {
+            return null;
+        }
+        
+        ListNode tortoise = head;
+        ListNode hare = head;
+        
+        while (hare != null && hare.next != null) {
+            tortoise = tortoise.next;
+            hare = hare.next.next;
+            
+            if (tortoise == hare) {
+                ListNode pointer1 = head;
+                ListNode pointer2 = tortoise;
+                
+                while (pointer1 != pointer2) {
+                    pointer1 = pointer1.next;
+                    pointer2 = pointer2.next;
+                }
+                return pointer1;
+            }
+        }
+        
+        return null;
+    }
+}
